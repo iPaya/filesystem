@@ -27,11 +27,28 @@ class LocalAdapter extends Adapter
     }
 
     /**
+     * Detect dir
+     *
+     * @param $filename
+     */
+    protected function detectDir($filename)
+    {
+        $dir = dirname($filename);
+
+        if ($this->autoMkdir && !file_exists($dir)) {
+            mkdir($dir, $this->dirMode, true);
+        }
+    }
+
+    /**
      * @inheritDoc
      */
     function write($filename, $contents)
     {
         $filename = $this->path . '/' . ltrim($filename, '/');
+
+        $this->detectDir(dirname($filename));
+
         return file_put_contents($filename, $contents) !== false;
     }
 
@@ -41,11 +58,8 @@ class LocalAdapter extends Adapter
     function upload($srcFilename, $destFilename)
     {
         $destFilename = $this->path . '/' . ltrim($destFilename, '/');
-        $dir = dirname($destFilename);
 
-        if ($this->autoMkdir && !file_exists($dir)) {
-            mkdir($dir, $this->dirMode, true);
-        }
+        $this->detectDir(dirname($destFilename));
 
         if (is_uploaded_file($srcFilename)) {
             return move_uploaded_file($srcFilename, $destFilename);
