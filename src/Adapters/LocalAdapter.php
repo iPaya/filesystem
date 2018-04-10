@@ -29,12 +29,10 @@ class LocalAdapter extends Adapter
     /**
      * Detect dir
      *
-     * @param $filename
+     * @param $dir
      */
-    protected function detectDir($filename)
+    protected function detectDir($dir)
     {
-        $dir = dirname($filename);
-
         if ($this->autoMkdir && !file_exists($dir)) {
             mkdir($dir, $this->dirMode, true);
         }
