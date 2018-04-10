@@ -1,6 +1,8 @@
 {
     "name": "ipaya/filesystem",
+    "homepage": "https://github.com/iPaya/filesystem/",
     "minimum-stability": "stable",
+    "license": "BSD-3-Clause",
     "require": {
         "php": ">=7.0.0"
     },
