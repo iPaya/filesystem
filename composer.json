@@ -4,7 +4,8 @@
     "minimum-stability": "stable",
     "license": "BSD-3-Clause",
     "require": {
-        "php": ">=7.0.0"
+        "php": ">=7.0.0",
+        "aliyuncs/oss-sdk-php": "^2.3"
     },
     "require-dev": {
     },
